@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prapti Ghosh | Portfolio</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+:root{
+    --bg:#0b1020;
+    --card:rgba(255,255,255,0.08);
+    --text:#ffffff;
+    --secondary:#b8b8b8;
+    --primary:#7c4dff;
+    --accent:#00d4ff;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,var(--primary),transparent 70%);
+    top:-200px;
+    left:-200px;
+    opacity:0.25;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:radial-gradient(circle,var(--accent),transparent 70%);
+    bottom:-150px;
+    right:-150px;
+    opacity:0.2;
+    z-index:-1;
+}
+
+section{
+    padding:100px 10%;
+}
+
+h1,h2,h3{
+    line-height:1.2;
+}
+
+p{
+    color:var(--secondary);
+    line-height:1.8;
+}
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:1000;
+    backdrop-filter:blur(14px);
+    background:rgba(0,0,0,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 10%;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    background:linear-gradient(135deg,var(--accent),var(--primary));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+    position:relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:var(--accent);
+}
+
+.hamburger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+}
+
+.hamburger span{
+    width:25px;
+    height:3px;
+    background:white;
+    border-radius:5px;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.typing{
+    color:var(--accent);
+    min-height:40px;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 32px;
+    border-radius:50px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.4s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 30px rgba(0,212,255,0.3);
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.glass-card{
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:35px;
+    transition:0.4s;
+}
+
+.glass-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.35);
+}
+
+.about-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.skills-grid,
+.projects-grid,
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.skill-card{
+    text-align:center;
+}
+
+.skill-icon{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.project-card img{
+    width:100%;
+    border-radius:18px;
+    margin-bottom:20px;
+    height:220px;
+    object-fit:cover;
+}
+
+.contact-item{
+    text-align:center;
+}
+
+.contact-item h3{
+    margin:15px 0;
+}
+
+footer{
+    padding:40px 10%;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.03);
+}
+
+.socials{
+    margin:20px 0;
+}
+
+.socials a{
+    margin:0 12px;
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.socials a:hover{
+    color:var(--accent);
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .typing{
+        font-size:22px;
+    }
+
+    .about-container{
+        grid-template-columns:1fr;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:80px;
+        right:-100%;
+        width:260px;
+        height:100vh;
+        flex-direction:column;
+        background:#111827;
+        padding:40px;
+        transition:0.4s;
+    }
+
+    .nav-links.active{
+        right:0;
+    }
+
+    .hamburger{
+        display:flex;
+    }
+}
+
+@media(max-width:500px){
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Prapti</div>
+
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+
+    <div class="hero-content reveal">
+
+        <h1>Hi, I'm Prapti Ghosh</h1>
+
+        <div class="typing"></div>
+
+        <p>
+            Passionate about creativity, learning, and modern web design.
+            Building clean and responsive digital experiences.
+        </p>
+
+        <a href="#projects" class="btn">View Projects</a>
+
+    </div>
+
+</section>
+
+<section id="about">
+
+    <div class="section-title reveal">
+        <h2>About Me</h2>
+        <p>Get to know me better</p>
+    </div>
+
+    <div class="about-container">
+
+        <div class="glass-card reveal">
+            <h3>👩‍🎓 Student</h3>
+            <p>
+                I am pursuing my B.A. course from Suryasen Mahavidyalaya.
+                I enjoy learning new technologies, designing modern websites,
+                and improving my creative skills every day.
+            </p>
+        </div>
+
+        <div class="glass-card reveal">
+            <h3>💡 Goals</h3>
+            <p>
+                My goal is to become a skilled web developer and create
+                elegant, responsive, and user-friendly websites with modern UI design.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="skills">
+
+    <div class="section-title reveal">
+        <h2>Skills</h2>
+        <p>Technologies and strengths</p>
+    </div>
+
+    <div class="skills-grid">
+
+        <div class="glass-card skill-card reveal">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML</h3>
+            <p>Semantic and responsive web structure.</p>
+        </div>
+
+        <div class="glass-card skill-card reveal">
+            <div class="skill-icon">🎨</div>
+            <h3>CSS</h3>
+            <p>Modern layouts, animations, and responsive design.</p>
+        </div>
+
+        <div class="glass-card skill-card reveal">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+            <p>Interactive and dynamic web experiences.</p>
+        </div>
+
+        <div class="glass-card skill-card reveal">
+            <div class="skill-icon">✨</div>
+            <h3>UI Design</h3>
+            <p>Minimal and elegant user interface creation.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="projects">
+
+    <div class="section-title reveal">
+        <h2>Projects</h2>
+        <p>Featured work and creations</p>
+    </div>
+
+    <div class="projects-grid">
+
+        <div class="glass-card project-card reveal">
+
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="Fitness App">
+
+            <h3>🏋️ Fitness App</h3>
+
+            <p>
+                A modern responsive fitness application website designed
+                using only HTML, CSS, and JavaScript with interactive UI elements.
+            </p>
+
+            <br>
+
+            <a href="#" class="btn">Project Link</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact">
+
+    <div class="section-title reveal">
+        <h2>Contact Me</h2>
+        <p>Let's connect and collaborate</p>
+    </div>
+
+    <div class="contact-grid">
+
+        <div class="glass-card contact-item reveal">
+            <div class="skill-icon">📧</div>
+            <h3>Email</h3>
+            <p>praptighosh931@gmail.com</p>
+        </div>
+
+        <div class="glass-card contact-item reveal">
+            <div class="skill-icon">📱</div>
+            <h3>Phone</h3>
+            <p>7318648970</p>
+        </div>
+
+        <div class="glass-card contact-item reveal">
+            <div class="skill-icon">💻</div>
+            <h3>GitHub</h3>
+            <p>GitHub link will be added later.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <h2>Prapti Ghosh</h2>
+
+    <div class="socials">
+        <a href="#">Instagram</a>
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+    </div>
+
+    <p>© 2026 Prapti Ghosh. All rights reserved.</p>
+
+</footer>
+
+<script>
+
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click',()=>{
+    navLinks.classList.toggle('active');
+});
+
+const reveals = document.querySelectorAll('.reveal');
+
+function revealElements(){
+    reveals.forEach((element)=>{
+        const windowHeight = window.innerHeight;
+        const revealTop = element.getBoundingClientRect().top;
+
+        if(revealTop < windowHeight - 100){
+            element.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealElements);
+revealElements();
+
+const sections = document.querySelectorAll("section");
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", ()=>{
+
+    let current = "";
+
+    sections.forEach(section=>{
+        const sectionTop = section.offsetTop - 150;
+
+        if(pageYOffset >= sectionTop){
+            current = section.getAttribute("id");
+        }
+    });
+
+    navItems.forEach(link=>{
+        link.classList.remove("active");
+
+        if(link.getAttribute("href").includes(current)){
+            link.classList.add("active");
+        }
+    });
+
+});
+
+const typingText = document.querySelector('.typing');
+
+const words = [
+    "B.A. Student",
+    "Aspiring Web Developer",
+    "Creative Learner",
+    "Frontend Enthusiast"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect(){
+
+    const currentWord = words[wordIndex];
+
+    if(isDeleting){
+        typingText.textContent = currentWord.substring(0,charIndex--);
+    }else{
+        typingText.textContent = currentWord.substring(0,charIndex++);
+    }
+
+    let speed = isDeleting ? 60 : 120;
+
+    if(!isDeleting && charIndex === currentWord.length){
+        isDeleting = true;
+        speed = 1200;
+    }
+
+    if(isDeleting && charIndex === 0){
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(typeEffect,speed);
+
+}
+
+typeEffect();
+
+</script>
+
+</body>
+</html>
